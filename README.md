@@ -5,6 +5,7 @@ A comprehensive collection of machine learning and deep learning projects focuse
 ## 📋 Table of Contents
 - [Overview](#overview)
 - [Projects](#projects)
+  - [California Housing Price Prediction](#california-housing-price-prediction)
   - [CIFAR-10 Neural Network](#cifar-10-neural-network-classification)
   - [Diabetes Predictor](#diabetes-predictor)
   - [Flower Classification](#flower-classification-with-cnn)
@@ -19,15 +20,54 @@ A comprehensive collection of machine learning and deep learning projects focuse
 
 ## 🌟 Overview
 
-This repository contains three distinct machine learning projects that demonstrate various approaches to predictive modeling:
+This repository contains four distinct machine learning projects that demonstrate various approaches to predictive modeling:
 
-1. **Computer Vision**: Image classification using Convolutional Neural Networks
-2. **Medical Prediction**: Healthcare analytics with traditional ML algorithms
-3. **Multi-class Classification**: Large-scale flower species recognition
+1. **Real Estate Prediction**: Housing price prediction using advanced regression techniques
+2. **Computer Vision**: Image classification using Convolutional Neural Networks
+3. **Medical Prediction**: Healthcare analytics with traditional ML algorithms
+4. **Multi-class Classification**: Large-scale flower species recognition
 
 Each project showcases different aspects of machine learning pipeline development, from data preprocessing to model evaluation, covering both traditional ML and deep learning approaches.
 
 ## 🚀 Projects
+
+### 🏠 California Housing Price Prediction
+
+**Domain**: Real Estate Analytics | **Type**: Regression | **Framework**: Scikit-learn + XGBoost
+
+A comprehensive machine learning pipeline for predicting median house values in California districts using the famous California Housing dataset from scikit-learn.
+
+#### Key Features:
+- **Dataset**: 20,640 housing districts with 8 numerical features
+- **Best Model**: XGBoost with **84.4% R² score** - Excellent performance!
+- **Pipeline**: Complete regression workflow with advanced preprocessing
+- **Evaluation**: Multiple metrics (R², RMSE, MAE) with cross-validation
+- **Optimization**: RandomizedSearchCV for hyperparameter tuning
+
+#### Technical Highlights:
+- **Advanced Preprocessing**: RobustScaler for outlier handling
+- **Model Comparison**: Linear, Ridge, Lasso, Random Forest, XGBoost
+- **Cross-Validation**: 10-fold CV for robust model selection
+- **Business Application**: Suitable for Automated Valuation Models (AVM)
+
+#### Models Performance:
+| Model | Cross-Validation R² | Test R² | RMSE | MAE |
+|-------|-------------------|---------|------|-----|
+| Linear Regression | ~0.60 | - | - | - |
+| Ridge Regression | ~0.60 | - | - | - |
+| Lasso Regression | ~0.60 | - | - | - |
+| Random Forest | ~0.80 | - | - | - |
+| **XGBoost** | **~0.84** | **0.844** | **0.204** | **0.291** |
+
+#### Business Value:
+- **84.4% variance explained** = Highly reliable price estimates
+- **Low prediction errors** suitable for real estate valuation
+- **Scalable framework** for property portfolio analysis
+
+**📁 Location**: `./Machine Learning/California Housing/`  
+**📓 Main File**: `CaliforniaHousing.ipynb`
+
+---
 
 ### 🖼️ CIFAR-10 Neural Network Classification
 
@@ -165,17 +205,17 @@ Conv+ReLU+MaxPool → Flatten → FC(512) → FC(102 classes)
 
 ## 📊 Project Comparison
 
-| Aspect | CIFAR-10 | Diabetes Predictor | Flower Classification |
-|--------|----------|-------------------|----------------------|
-| **Domain** | Computer Vision | Healthcare | Computer Vision |
-| **Data Type** | Images (32×32) | Tabular | Images (224×224) |
-| **Classes** | 10 | 2 (Binary) | 102 |
-| **Samples** | 60,000 | 768 | 8,189 |
-| **Algorithm** | CNN | XGBoost | CNN |
-| **Framework** | PyTorch | Scikit-learn | PyTorch |
-| **Accuracy** | ~54% | 76% Recall | In Progress |
-| **Focus** | Multi-class | Medical/Recall | Large-scale |
-| **Complexity** | Medium | High Pipeline | High Architecture |
+| Aspect | California Housing | CIFAR-10 | Diabetes Predictor | Flower Classification |
+|--------|-------------------|----------|-------------------|----------------------|
+| **Domain** | Real Estate | Computer Vision | Healthcare | Computer Vision |
+| **Data Type** | Tabular | Images (32×32) | Tabular | Images (224×224) |
+| **Problem Type** | Regression | Classification | Binary Classification | Multi-class (102) |
+| **Samples** | 20,640 | 60,000 | 768 | 8,189 |
+| **Algorithm** | XGBoost | CNN | XGBoost | CNN |
+| **Framework** | Scikit-learn | PyTorch | Scikit-learn | PyTorch |
+| **Performance** | 84.4% R² | ~54% Accuracy | 76% Recall | In Progress |
+| **Focus** | Price Prediction | Multi-class | Medical/Recall | Large-scale |
+| **Complexity** | High Pipeline | Medium | High Pipeline | High Architecture |
 
 ## 💻 Installation
 
@@ -217,23 +257,29 @@ print("Scikit-learn version:", sklearn.__version__)
 
 ### Running Individual Projects
 
+#### California Housing Price Prediction:
+```bash
+cd "Machine Learning/California Housing"
+jupyter notebook CaliforniaHousing.ipynb
+# Uses built-in scikit-learn dataset
+```
 #### CIFAR-10 Classification:
 ```bash
-cd CIFAR10
+cd "Deep Learning/CIFAR10"
 jupyter notebook CIFAR10_neural_network.ipynb
 # Dataset downloads automatically
 ```
 
 #### Diabetes Predictor:
 ```bash
-cd DiabetPredictor
+cd "Machine Learning/Diabet Predictor"
 jupyter notebook DiabetPredictor.ipynb
 # Uses included diabetes.csv dataset
 ```
 
 #### Flower Classification:
 ```bash
-cd "Flower Classification"
+cd "Deep Learning/Flower Classification"
 jupyter notebook Flowers.ipynb
 # Requires manual dataset setup (see project README)
 ```
@@ -249,12 +295,14 @@ jupyter notebook Flowers.ipynb
 
 | Project | Metric | Value | Significance |
 |---------|--------|-------|--------------|
+| **California Housing** | Test R² | 84.4% | Excellent regression performance |
 | **CIFAR-10** | Test Accuracy | 54% | Good for simple CNN |
 | **Diabetes** | Recall | 76% | High medical relevance |
 | **Diabetes** | F1-Score | 72% | Balanced performance |
 | **Flower** | Architecture | 51.5M params | Large-scale classification |
 
 ### Key Achievements:
+- **California Housing**: Outstanding 84.4% R² score for regression prediction
 - **CIFAR-10**: Successful CNN implementation with automatic data handling
 - **Diabetes**: Clinically relevant model with 76% recall (38% improvement over baseline)
 - **Flower**: Complex 102-class classification with sophisticated preprocessing
@@ -266,26 +314,35 @@ Predictors-Projects/
 ├── README.md                           # This comprehensive overview
 ├── .gitignore                         # Git ignore patterns
 │
-├── CIFAR10/                           # Computer Vision - 10 classes
-│   ├── README.md                      # Project-specific documentation
-│   ├── CIFAR10_neural_network.ipynb   # Main implementation
-│   ├── cifar_net.pth                 # Saved model weights
-│   └── data/                          # CIFAR-10 dataset (auto-downloaded)
-│       └── cifar-10-batches-py/       # Extracted dataset files
+├── Machine Learning/                   # Traditional ML & Regression Projects
+│   ├── California Housing/            # Real Estate Price Prediction
+│   │   ├── README.md                  # Project-specific documentation
+│   │   └── CaliforniaHousing.ipynb    # Complete regression pipeline
+│   │
+│   └── Diabet Predictor/              # Healthcare Analytics
+│       ├── README.md                  # Detailed project documentation
+│       ├── DiabetPredictor.ipynb      # Complete ML pipeline
+│       └── data_lab9/                 # Dataset directory
+│           └── diabetes.csv           # Pima Indians Diabetes Database
 │
-├── DiabetPredictor/                   # Healthcare Analytics
-│   ├── README.md                      # Detailed project documentation
-│   ├── DiabetPredictor.ipynb          # Complete ML pipeline
-│   └── data_lab9/                     # Dataset directory
-│       └── diabetes.csv               # Pima Indians Diabetes Database
-│
-└── Flower Classification/             # Computer Vision - 102 classes
-    ├── README.md                      # Project documentation
-    ├── Flowers.ipynb                  # Deep learning implementation
-    ├── imagelabels.mat               # Flower category labels
-    ├── setid.mat                     # Train/test/validation splits
-    └── 102flowers/                   # Flower images dataset
-        └── jpg/                      # 8,189 flower images
+└── Deep Learning/                      # Neural Networks & Computer Vision
+    ├── CIFAR10/                       # Computer Vision - 10 classes
+    │   ├── README.md                  # Project-specific documentation
+    │   ├── CIFAR10_neural_network.ipynb # Main implementation
+    │   ├── cifar_net.pth             # Saved model weights
+    │   └── data/                      # CIFAR-10 dataset (auto-downloaded)
+    │       └── cifar-10-batches-py/   # Extracted dataset files
+    │
+    ├── Fashion MINST/                 # Fashion item classification
+    │   └── [Fashion MNIST files]      # Fashion classification project
+    │
+    └── Flower Classification/         # Computer Vision - 102 classes
+        ├── README.md                  # Project documentation
+        ├── Flowers.ipynb              # Deep learning implementation
+        ├── imagelabels.mat           # Flower category labels
+        ├── setid.mat                 # Train/test/validation splits
+        └── 102flowers/               # Flower images dataset
+            └── jpg/                  # 8,189 flower images
 ```
 
 ## 🎯 Learning Outcomes
@@ -351,9 +408,10 @@ Contributions are welcome! Areas for improvement:
 **Repository**: [Predictors-Projects](https://github.com/doroteaMonaco/Predictors-Projects)
 
 ### Project-Specific Links:
-- [CIFAR-10 Implementation](./CIFAR10/)
-- [Diabetes Predictor](./DiabetPredictor/)
-- [Flower Classification](./Flower%20Classification/)
+- [California Housing Price Prediction](./Machine%20Learning/California%20Housing/)
+- [Diabetes Predictor](./Machine%20Learning/Diabet%20Predictor/)
+- [CIFAR-10 Implementation](./Deep%20Learning/CIFAR10/)
+- [Flower Classification](./Deep%20Learning/Flower%20Classification/)
 
 ---
 
