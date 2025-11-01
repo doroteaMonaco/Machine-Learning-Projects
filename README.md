@@ -164,20 +164,33 @@ An advanced transfer learning implementation using pre-trained ResNet18 for cats
 
 **Domain**: Computer Vision | **Type**: Multi-class Classification | **Framework**: PyTorch
 
-A Convolutional Neural Network implementation for classifying images from the CIFAR-10 dataset into 10 distinct categories (airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck).
+An improved Convolutional Neural Network implementation for classifying images from the CIFAR-10 dataset into 10 distinct categories (airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck) with enhanced architecture and training strategies.
 
 #### Key Features:
 - **Dataset**: 60,000 32×32 color images in 10 classes
-- **Architecture**: Custom CNN with multiple convolutional layers
-- **Performance**: ~54% accuracy on test set
-- **Training**: Stochastic Gradient Descent optimization
+- **Architecture**: Enhanced CNN with BatchNormalization and Dropout
+- **Performance**: **78.51% accuracy** on test set - Significant improvement!
+- **Training**: 30 epochs with optimized hyperparameters
 - **Output**: Saved model weights (`cifar_net.pth`)
 
 #### Technical Highlights:
-- Automatic dataset downloading and preprocessing
-- GPU acceleration support
-- Real-time training loss monitoring
-- Comprehensive performance analysis across classes
+- **Improved Architecture**: 3-layer CNN with BatchNorm and Dropout
+- **Enhanced Preprocessing**: Advanced data augmentation with larger batch size (32)
+- **GPU Acceleration**: CUDA support for faster training
+- **Real-time Loss Monitoring**: Training progress tracking
+- **Comprehensive Evaluation**: Per-class accuracy analysis
+
+#### Architecture Details:
+- **Conv Layers**: 32→64→128 channels with 3×3 kernels and padding
+- **Batch Normalization**: After each convolutional layer
+- **Dropout**: 0.5 regularization before final classification
+- **Fully Connected**: 512 hidden units for classification head
+
+#### Performance Improvements:
+- **Previous**: ~54% accuracy (basic CNN)
+- **Current**: **78.51% accuracy** (+24.5% improvement!)
+- **Training**: 30 epochs vs. previous 20 epochs
+- **Batch Size**: Increased from 4 to 32 for better convergence
 
 **📁 Location**: `./CIFAR10/`  
 **📓 Main File**: `CIFAR10_neural_network.ipynb`
@@ -305,7 +318,7 @@ Conv+ReLU+MaxPool → Flatten → FC(512) → FC(102 classes)
 | **Samples** | 20,640 | 1,338 | 10,023 | 60,000 | 768 | 8,189 |
 | **Algorithm** | XGBoost | XGBoost | ResNet18 Transfer | CNN | XGBoost | CNN |
 | **Framework** | Scikit-learn | Scikit-learn | PyTorch | PyTorch | Scikit-learn | PyTorch |
-| **Performance** | 84.4% R² | 88.4% R² | 98.5% Accuracy | ~54% Accuracy | 76% Recall | In Progress |
+| **Performance** | 84.4% R² | 88.4% R² | 98.5% Accuracy | 78.5% Accuracy | 76% Recall | In Progress |
 | **Focus** | Price Prediction | Cost Prediction | Transfer Learning | Multi-class | Medical/Recall | Large-scale |
 | **Complexity** | High Pipeline | High Pipeline | Advanced CV | Medium | High Pipeline | High Architecture |
 
@@ -404,7 +417,7 @@ jupyter notebook Flowers.ipynb
 | **Transfer Learning** | Test Accuracy | 98.5% | Outstanding computer vision performance |
 | **California Housing** | Test R² | 84.4% | Excellent regression performance |
 | **Medical Insurance** | Test R² | 88.4% | Outstanding regression performance |
-| **CIFAR-10** | Test Accuracy | 54% | Good for simple CNN |
+| **CIFAR-10** | Test Accuracy | 78.5% | Strong CNN performance with improvements |
 | **Diabetes** | Recall | 76% | High medical relevance |
 | **Diabetes** | F1-Score | 72% | Balanced performance |
 | **Flower** | Architecture | 51.5M params | Large-scale classification |
@@ -413,7 +426,7 @@ jupyter notebook Flowers.ipynb
 - **Transfer Learning**: Outstanding 98.5% accuracy for binary image classification
 - **Medical Insurance**: Outstanding 88.4% R² score for insurance cost prediction
 - **California Housing**: Excellent 84.4% R² score for regression prediction
-- **CIFAR-10**: Successful CNN implementation with automatic data handling
+- **CIFAR-10**: Strong 78.5% accuracy with enhanced CNN architecture (+24.5% improvement)
 - **Diabetes**: Clinically relevant model with 76% recall (38% improvement over baseline)
 - **Flower**: Complex 102-class classification with sophisticated preprocessing
 
