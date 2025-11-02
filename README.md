@@ -1,11 +1,13 @@
 # Predictors Projects Collection 🤖
 
-A comprehensive collection of machine learning and deep learning projects focused on predictive modeling across different domains: computer vision, medical diagnosis, and multi-class classification.
+A comprehensive collection of machine learning and deep learning projects focused on predictive modeling across different domains: computer vision, medical diagnosis, insurance analytics, and multi-class classification.
 
 ## 📋 Table of Contents
 - [Overview](#overview)
 - [Projects](#projects)
   - [California Housing Price Prediction](#california-housing-price-prediction)
+  - [Medical Insurance Cost Predictor](#medical-insurance-cost-predictor)
+  - [Transfer Learning ResNet18](#transfer-learning-resnet18)
   - [CIFAR-10 Neural Network](#cifar-10-neural-network-classification)
   - [Diabetes Predictor](#diabetes-predictor)
   - [Flower Classification](#flower-classification-with-cnn)
@@ -20,12 +22,14 @@ A comprehensive collection of machine learning and deep learning projects focuse
 
 ## 🌟 Overview
 
-This repository contains four distinct machine learning projects that demonstrate various approaches to predictive modeling:
+This repository contains six distinct machine learning projects that demonstrate various approaches to predictive modeling:
 
 1. **Real Estate Prediction**: Housing price prediction using advanced regression techniques
-2. **Computer Vision**: Image classification using Convolutional Neural Networks
-3. **Medical Prediction**: Healthcare analytics with traditional ML algorithms
-4. **Multi-class Classification**: Large-scale flower species recognition
+2. **Insurance Analytics**: Medical insurance cost prediction with feature engineering
+3. **Transfer Learning**: Advanced computer vision with pre-trained ResNet18
+4. **Computer Vision**: Image classification using Convolutional Neural Networks
+5. **Medical Prediction**: Healthcare analytics with traditional ML algorithms
+6. **Multi-class Classification**: Large-scale flower species recognition
 
 Each project showcases different aspects of machine learning pipeline development, from data preprocessing to model evaluation, covering both traditional ML and deep learning approaches.
 
@@ -69,24 +73,124 @@ A comprehensive machine learning pipeline for predicting median house values in 
 
 ---
 
+### 🏥 Medical Insurance Cost Predictor
+
+**Domain**: Insurance Analytics | **Type**: Regression | **Framework**: Scikit-learn + XGBoost
+
+A comprehensive machine learning pipeline for predicting medical insurance costs based on personal characteristics and lifestyle factors using advanced feature engineering and hyperparameter optimization.
+
+#### Key Features:
+- **Dataset**: 1,338 insurance records with 7 features
+- **Best Model**: XGBoost with **88.4% R² score** - Outstanding performance!
+- **Pipeline**: Complete regression workflow with categorical encoding
+- **Evaluation**: Cross-validation with business-focused metrics
+- **Optimization**: RandomizedSearchCV for hyperparameter tuning
+
+#### Technical Highlights:
+- **Advanced Preprocessing**: LabelEncoder + One-Hot encoding for categoricals
+- **Model Comparison**: Linear, Ridge, Lasso, Random Forest, XGBoost
+- **Cross-Validation**: 10-fold CV for robust model validation
+- **Business Application**: Insurance premium calculation and risk assessment
+
+#### Models Performance:
+| Model | Cross-Validation R² | Test R² | Notes |
+|-------|-------------------|---------|-------|
+| Linear Regression | ~0.75 | - | Baseline |
+| Ridge Regression | ~0.75 | - | Regularized |
+| Lasso Regression | ~0.75 | - | Feature Selection |
+| Random Forest | ~0.80 | - | Ensemble |
+| **XGBoost** | **~0.87** | **0.884** | **Best Performance** |
+
+#### Business Value:
+- **88.4% variance explained** = Extremely reliable cost estimates
+- **Feature insights** for risk factor identification
+- **Scalable framework** for insurance portfolio pricing
+
+**📁 Location**: `./Machine Learning/Medical Insurance/`  
+**📓 Main File**: `Medical Insurance.ipynb`
+
+---
+
+### 🔄 Transfer Learning ResNet18
+
+**Domain**: Computer Vision | **Type**: Binary Classification | **Framework**: PyTorch + Transfer Learning
+
+An advanced transfer learning implementation using pre-trained ResNet18 for cats vs dogs classification, demonstrating state-of-the-art computer vision techniques with multiple fine-tuning strategies.
+
+#### Key Features:
+- **Dataset**: 8,000 training + 2,023 test images (cats vs dogs)
+- **Best Model**: Fine-tuned ResNet18 with **98.5% test accuracy** - Outstanding performance!
+- **Architecture**: Pre-trained ResNet18 with modified classifier head
+- **Strategies**: Feature extraction, full fine-tuning, partial fine-tuning
+- **Optimization**: Multiple learning rates for backbone vs head layers
+
+#### Technical Highlights:
+- **Transfer Learning**: ImageNet pre-trained ResNet18 backbone
+- **Advanced Data Augmentation**: RandomResizedCrop, RandomHorizontalFlip
+- **Multiple Training Strategies**: 
+  - Feature extraction (frozen backbone): 98.37% accuracy
+  - Full fine-tuning: 98.56% accuracy
+  - Partial fine-tuning (layer4 + fc): 98.32% accuracy
+- **Differential Learning Rates**: Lower LR for backbone, higher for head
+- **Model Variants**: 7 different saved models with various configurations
+
+#### Training Strategies Performance:
+| Strategy | Test Accuracy | Notes |
+|----------|--------------|-------|
+| Feature Extraction | 98.37% | Only FC layer trained |
+| **Full Fine-tuning** | **98.56%** | **Best Performance** |
+| Partial Fine-tuning | 98.32% | Layer4 + FC trained |
+| No Augmentation | ~98.3% | Baseline comparison |
+| No Warmup | ~98.2% | Training strategy comparison |
+
+#### Model Artifacts:
+- `resnet18_finetuned.pth`: Best full fine-tuning model
+- `resnet18_finetuned_warmup.pth`: With warmup strategy
+- `resnet18_finetuned_noaug.pth`: Without data augmentation
+- `resnet18_partial_finetune.pth`: Partial fine-tuning variants
+
+#### Business Value:
+- **98.5% accuracy** = Production-ready computer vision model
+- **Transfer learning efficiency** = Faster training with less data
+- **Multiple strategies** for different computational budgets
+- **Scalable framework** for binary image classification tasks
+
+**📁 Location**: `./Deep Learning/Transfer Learning ResNet18/`  
+**📓 Main File**: `Transfer Learning.ipynb`
+
+---
+
 ### 🖼️ CIFAR-10 Neural Network Classification
 
 **Domain**: Computer Vision | **Type**: Multi-class Classification | **Framework**: PyTorch
 
-A Convolutional Neural Network implementation for classifying images from the CIFAR-10 dataset into 10 distinct categories (airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck).
+An improved Convolutional Neural Network implementation for classifying images from the CIFAR-10 dataset into 10 distinct categories (airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck) with enhanced architecture and training strategies.
 
 #### Key Features:
 - **Dataset**: 60,000 32×32 color images in 10 classes
-- **Architecture**: Custom CNN with multiple convolutional layers
-- **Performance**: ~54% accuracy on test set
-- **Training**: Stochastic Gradient Descent optimization
+- **Architecture**: Enhanced CNN with BatchNormalization and Dropout
+- **Performance**: **78.51% accuracy** on test set - Significant improvement!
+- **Training**: 30 epochs with optimized hyperparameters
 - **Output**: Saved model weights (`cifar_net.pth`)
 
 #### Technical Highlights:
-- Automatic dataset downloading and preprocessing
-- GPU acceleration support
-- Real-time training loss monitoring
-- Comprehensive performance analysis across classes
+- **Improved Architecture**: 3-layer CNN with BatchNorm and Dropout
+- **Enhanced Preprocessing**: Advanced data augmentation with larger batch size (32)
+- **GPU Acceleration**: CUDA support for faster training
+- **Real-time Loss Monitoring**: Training progress tracking
+- **Comprehensive Evaluation**: Per-class accuracy analysis
+
+#### Architecture Details:
+- **Conv Layers**: 32→64→128 channels with 3×3 kernels and padding
+- **Batch Normalization**: After each convolutional layer
+- **Dropout**: 0.5 regularization before final classification
+- **Fully Connected**: 512 hidden units for classification head
+
+#### Performance Improvements:
+- **Previous**: ~54% accuracy (basic CNN)
+- **Current**: **78.51% accuracy** (+24.5% improvement!)
+- **Training**: 30 epochs vs. previous 20 epochs
+- **Batch Size**: Increased from 4 to 32 for better convergence
 
 **📁 Location**: `./CIFAR10/`  
 **📓 Main File**: `CIFAR10_neural_network.ipynb`
@@ -157,9 +261,10 @@ Conv+ReLU+MaxPool → Flatten → FC(512) → FC(102 classes)
 ## 🛠️ Technologies Used
 
 ### Machine Learning Frameworks:
-- **PyTorch**: Deep learning models (CIFAR-10, Flower Classification)
+- **PyTorch**: Deep learning models (Transfer Learning, CIFAR-10, Flower Classification)
 - **Scikit-learn**: Traditional ML algorithms (Diabetes Predictor)
 - **XGBoost**: Gradient boosting for tabular data
+- **Transfer Learning**: Pre-trained model fine-tuning
 
 ### Data Processing:
 - **Pandas**: Data manipulation and analysis
@@ -205,17 +310,17 @@ Conv+ReLU+MaxPool → Flatten → FC(512) → FC(102 classes)
 
 ## 📊 Project Comparison
 
-| Aspect | California Housing | CIFAR-10 | Diabetes Predictor | Flower Classification |
-|--------|-------------------|----------|-------------------|----------------------|
-| **Domain** | Real Estate | Computer Vision | Healthcare | Computer Vision |
-| **Data Type** | Tabular | Images (32×32) | Tabular | Images (224×224) |
-| **Problem Type** | Regression | Classification | Binary Classification | Multi-class (102) |
-| **Samples** | 20,640 | 60,000 | 768 | 8,189 |
-| **Algorithm** | XGBoost | CNN | XGBoost | CNN |
-| **Framework** | Scikit-learn | PyTorch | Scikit-learn | PyTorch |
-| **Performance** | 84.4% R² | ~54% Accuracy | 76% Recall | In Progress |
-| **Focus** | Price Prediction | Multi-class | Medical/Recall | Large-scale |
-| **Complexity** | High Pipeline | Medium | High Pipeline | High Architecture |
+| Aspect | California Housing | Medical Insurance | Transfer Learning | CIFAR-10 | Diabetes Predictor | Flower Classification |
+|--------|-------------------|------------------|-------------------|----------|-------------------|----------------------|
+| **Domain** | Real Estate | Insurance Analytics | Computer Vision | Computer Vision | Healthcare | Computer Vision |
+| **Data Type** | Tabular | Tabular | Images (224×224) | Images (32×32) | Tabular | Images (224×224) |
+| **Problem Type** | Regression | Regression | Binary Classification | Classification | Binary Classification | Multi-class (102) |
+| **Samples** | 20,640 | 1,338 | 10,023 | 60,000 | 768 | 8,189 |
+| **Algorithm** | XGBoost | XGBoost | ResNet18 Transfer | CNN | XGBoost | CNN |
+| **Framework** | Scikit-learn | Scikit-learn | PyTorch | PyTorch | Scikit-learn | PyTorch |
+| **Performance** | 84.4% R² | 88.4% R² | 98.5% Accuracy | 78.5% Accuracy | 76% Recall | In Progress |
+| **Focus** | Price Prediction | Cost Prediction | Transfer Learning | Multi-class | Medical/Recall | Large-scale |
+| **Complexity** | High Pipeline | High Pipeline | Advanced CV | Medium | High Pipeline | High Architecture |
 
 ## 💻 Installation
 
@@ -263,6 +368,20 @@ cd "Machine Learning/California Housing"
 jupyter notebook CaliforniaHousing.ipynb
 # Uses built-in scikit-learn dataset
 ```
+
+#### Medical Insurance Cost Predictor:
+```bash
+cd "Machine Learning/Medical Insurance"
+jupyter notebook "Medical Insurance.ipynb"
+# Uses included insurance.csv dataset
+```
+
+#### Transfer Learning ResNet18:
+```bash
+cd "Deep Learning/Transfer Learning ResNet18"
+jupyter notebook "Transfer Learning.ipynb"
+# Uses cats vs dogs dataset in archive/ folder
+```
 #### CIFAR-10 Classification:
 ```bash
 cd "Deep Learning/CIFAR10"
@@ -295,15 +414,19 @@ jupyter notebook Flowers.ipynb
 
 | Project | Metric | Value | Significance |
 |---------|--------|-------|--------------|
+| **Transfer Learning** | Test Accuracy | 98.5% | Outstanding computer vision performance |
 | **California Housing** | Test R² | 84.4% | Excellent regression performance |
-| **CIFAR-10** | Test Accuracy | 54% | Good for simple CNN |
+| **Medical Insurance** | Test R² | 88.4% | Outstanding regression performance |
+| **CIFAR-10** | Test Accuracy | 78.5% | Strong CNN performance with improvements |
 | **Diabetes** | Recall | 76% | High medical relevance |
 | **Diabetes** | F1-Score | 72% | Balanced performance |
 | **Flower** | Architecture | 51.5M params | Large-scale classification |
 
 ### Key Achievements:
-- **California Housing**: Outstanding 84.4% R² score for regression prediction
-- **CIFAR-10**: Successful CNN implementation with automatic data handling
+- **Transfer Learning**: Outstanding 98.5% accuracy for binary image classification
+- **Medical Insurance**: Outstanding 88.4% R² score for insurance cost prediction
+- **California Housing**: Excellent 84.4% R² score for regression prediction
+- **CIFAR-10**: Strong 78.5% accuracy with enhanced CNN architecture (+24.5% improvement)
 - **Diabetes**: Clinically relevant model with 76% recall (38% improvement over baseline)
 - **Flower**: Complex 102-class classification with sophisticated preprocessing
 
@@ -319,6 +442,12 @@ Predictors-Projects/
 │   │   ├── README.md                  # Project-specific documentation
 │   │   └── CaliforniaHousing.ipynb    # Complete regression pipeline
 │   │
+│   ├── Medical Insurance/             # Insurance Cost Prediction
+│   │   ├── README.md                  # Detailed project documentation
+│   │   ├── Medical Insurance.ipynb    # Complete ML pipeline (88.4% R²)
+│   │   └── archive/                   # Dataset directory
+│   │       └── insurance.csv          # Medical insurance dataset
+│   │
 │   └── Diabet Predictor/              # Healthcare Analytics
 │       ├── README.md                  # Detailed project documentation
 │       ├── DiabetPredictor.ipynb      # Complete ML pipeline
@@ -326,6 +455,17 @@ Predictors-Projects/
 │           └── diabetes.csv           # Pima Indians Diabetes Database
 │
 └── Deep Learning/                      # Neural Networks & Computer Vision
+    ├── Transfer Learning ResNet18/     # Advanced Transfer Learning
+    │   ├── README.md                  # Project documentation
+    │   ├── Transfer Learning.ipynb    # Complete transfer learning pipeline
+    │   ├── resnet18_finetuned.pth    # Best model (98.5% accuracy)
+    │   ├── resnet18_finetuned_warmup.pth # Warmup strategy model
+    │   ├── resnet18_finetuned_noaug.pth  # No augmentation model
+    │   ├── resnet18_partial_finetune.pth # Partial fine-tuning model
+    │   └── archive/                   # Cats vs Dogs dataset
+    │       ├── training_set/          # Training images
+    │       └── test_set/              # Test images
+    │
     ├── CIFAR10/                       # Computer Vision - 10 classes
     │   ├── README.md                  # Project-specific documentation
     │   ├── CIFAR10_neural_network.ipynb # Main implementation
@@ -409,6 +549,8 @@ Contributions are welcome! Areas for improvement:
 
 ### Project-Specific Links:
 - [California Housing Price Prediction](./Machine%20Learning/California%20Housing/)
+- [Medical Insurance Cost Predictor](./Machine%20Learning/Medical%20Insurance/)
+- [Transfer Learning ResNet18](./Deep%20Learning/Transfer%20Learning%20ResNet18/)
 - [Diabetes Predictor](./Machine%20Learning/Diabet%20Predictor/)
 - [CIFAR-10 Implementation](./Deep%20Learning/CIFAR10/)
 - [Flower Classification](./Deep%20Learning/Flower%20Classification/)
